@@ -72,7 +72,7 @@
     <form action="../models/UserAccountDB.php" method="post">
         <table>
             <tr>
-                <th>User ID:</th>
+                <th >User ID:</th>
                 <td style="text-align: center;">
 
                     <?php
@@ -116,19 +116,19 @@
             </tr>
             <tr>
                 <th>ID:</th>
-                <td><input type="text" name="id" required></td>
+                <td><input type="text" name="id" ></td>
             </tr>
             <tr>
                 <th>Username:</th>
-                <td><input type="text" name="username" required></td>
+                <td><input type="text" name="username" ></td>
             </tr>
             <tr>
                 <th>Password:</th>
-                <td><input type="password" name="password" required></td>
+                <td><input type="password" name="password" ></td>
             </tr>
             <tr>
                 <th>Status ID:</th>
-                <td><input type="text" name="status_id" required></td>
+                <td><input type="text" name="status_id" ></td>
             </tr>
             <tr>
                 <th>Date Registered:</th>

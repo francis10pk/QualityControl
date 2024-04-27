@@ -9,14 +9,16 @@ class UsersAccountsClass
     private $Password;
     private $Status_Id;
     private $DataRegister;
+    
+    
     public function __construct(
         //$User_Id ,
         $Client_Id = null,
         $Employee_Id = null,
-        $UserName,
-        $Password,
-        $Status_Id,
-        $DataRegister
+        $UserName = null ,
+        $Password = null,
+        $Status_Id = null,
+        $DataRegister = null
         ) {
             //$this->User_Id = $User_Id;
             $this->Client_Id = $Client_Id;
@@ -171,7 +173,11 @@ class UsersAccountsClass
         elseif ($method == "update") 
         {
             $userID = $this->User_Id;
-            $connection = $args;
+            $username = $this->UserName;
+            $password = $this->Password;
+            $status_id = $this->Status_Id;
+            $data_register = $this->DataRegister;
+            $connection = $args[0];
             $sqlStmt = "UPDATE users_account SET
                     UserName = '$username',
                     Password = '$password',
@@ -183,7 +189,7 @@ class UsersAccountsClass
         }
         elseif ($method == "delete"){
             $userID = $this->User_Id;
-            $connection = $args; 
+            $connection = $args[0]; 
             
             $sqlStmt = "DELETE FROM users_account WHERE User_Id = '$userID'";
             $result = $connection->exec($sqlStmt);
