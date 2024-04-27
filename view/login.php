@@ -88,7 +88,7 @@
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $username = $_POST['username'];
                 $password = $_POST['password'];
-
+                
                 $query = "SELECT * FROM users_account WHERE username='$username' AND password='$password'";
                 
                 $result = mysqli_query($connection, $query);
@@ -108,6 +108,8 @@
                         // Store username and permission_id in session
                         $_SESSION['username'] = $username;
                         $_SESSION['permission'] = $permission_id;
+                        
+                        
                         
                         // Redirect to dashboard upon successful login
                         header("Location: dashboard.php");

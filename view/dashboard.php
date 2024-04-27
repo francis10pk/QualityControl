@@ -11,13 +11,14 @@ if (!isset($_SESSION['username'])) {
 // Get username from session
 $username = $_SESSION['username'];
 $permission = $_SESSION['permission'];
+
 function displayDashboardFeatures($permission)
 {
     switch ($permission) {
         case 1: // Admin
             echo "<h3>Admin Options:</h3>";
             echo "<ul>";
-            echo "<li><a href='create_user.php'>Create User Account</a></li>";
+            echo "<li><a href='user.php'>Create User Account</a></li>";
             echo "<li><a href='edit_user.php'>Edit User Account</a></li>";
             echo "<li><a href='delete_user.php'>Delete User Account</a></li>";
             echo "</ul>";

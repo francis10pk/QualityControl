@@ -170,25 +170,26 @@ class UsersAccountsClass
         }
         elseif ($method == "update") 
         {
+            $userID = $this->User_Id;
+            $connection = $args;
+            $sqlStmt = "UPDATE users_account SET
+                    UserName = '$username',
+                    Password = '$password',
+                    Status_Id = '$status_id',
+                    DataRegister = '$data_register'
+                    WHERE User_Id = '$userID'";
+            $result = $connection->exec($sqlStmt);
+            return $result;
+        }
+        elseif ($method == "delete"){
+            $userID = $this->User_Id;
+            $connection = $args; 
             
+            $sqlStmt = "DELETE FROM users_account WHERE User_Id = '$userID'";
+            $result = $connection->exec($sqlStmt);
+            return $result;
         }
     }
-    /*
-    public function create($connection) {
-        $client_id = $this->Client_Id;
-        $employee_id = $this->Employee_Id;
-        $username = $this->UserName;
-        $password = $this->Password;
-        $status_id = $this->Status_Id;
-        $data_register = $this->DataRegister;
-        
-        $sqlStmt = "INSERT INTO users_account (Client_Id, Employee_Id, UserName, Password, Status_Id, DataRegister)
-          VALUES ('$client_id', '$employee_id', '$username', '$password', '$status_id', '$data_register')";
-        
-        
-        $result = $connection->exec($sqlStmt);
-        return $result;
-    }
-    */
+    
 }
 
