@@ -18,21 +18,22 @@ function displayDashboardFeatures($permission)
         case 1: // Admin
             echo "<h3>Admin Options:</h3>";
             echo "<ul>";
-            echo "<li><a href='user.php'>Create User Account</a></li>";
-            echo "<li><a href='edit_user.php'>Edit User Account</a></li>";
-            echo "<li><a href='delete_user.php'>Delete User Account</a></li>";
+            echo "<li><a href='user.php'>Manage User Account</a></li>";
+            echo "<li><a href='NewEmployee.php'>Manage Employee</a></li>";
+            echo "<li><a href='MainPanel.php'>Employee Access</a></li>";
+            echo "<li><a href='client.php'>Client Access</a></li>";
             echo "</ul>";
             break;
         case 2: // Client
             echo "<h3>Client Options:</h3>";
             echo "<ul>";
-            echo "<li><a href='check_status.php'>Check Status</a></li>";
+            echo "<li><a href='client.php'>Check Status</a></li>";
             echo "</ul>";
             break;
         case 3: // Employee (or other permission levels)
             echo "<h3>Employee Options:</h3>";
             echo "<ul>";
-            echo "<li><a href='upload_documents.php'>Upload Documents</a></li>";
+            echo "<li><a href='MainPanel.php'>Manage Clients</a></li>";
             echo "</ul>";
             break;
         default:

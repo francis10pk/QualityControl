@@ -1,8 +1,10 @@
 <?php
     //require_once 'Service_OrderClass.php';
     use \class\UsersAccountsClass;
-    require_once '../models/dbconfig.php';
+    use \class\UserAccountPermissionClass;
 
+    require_once '../models/dbconfig.php';
+    require 'C:\xampp\htdocs\QualityControl\class\UserAccountPermissionClass.php';
     require '../class/UsersAccountsClass.php';
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -28,17 +30,21 @@
                         if ($userType === 'client') {
                             $user = new UsersAccountsClass($id, null, $username, $password, $status_id, $data_register);
                             $isInserted = $user->create("c",$connection);
+                            $permission = new UserAccountPermissionClass($userID, 2);
+                            $permission->create($connection);
                             if ($isInserted) {
                                 
-                                $notificationMessage = "The User with the ID $userID has been added successfully.";
+                                $notificationMessage = "The User with the Username $username has been added successfully.";
                             } else {
                                 $notificationMessage = "Failed to add the user. Please try again.";
                             }
                         } elseif ($userType === 'employee') {
                             $user = new UsersAccountsClass(null, $id, $username, $password, $status_id, $data_register);
                             $isInserted = $user->create("e",$connection);
+                            $permission = new UserAccountPermissionClass($userID, 3);
+                            $permission->create($connection);
                             if ($isInserted) {
-                                $notificationMessage = "The User with the ID $userID has been added successfully.";
+                                $notificationMessage = "The User with the Username $username has been added successfully.";
                             } else {
                                 $notificationMessage = "Failed to add the user. Please try again.";
                             }

@@ -43,8 +43,23 @@ class UserAccountPermissionClass
     {
         $this->Permission_Id = $Permission_Id;
     }
-
     
+    public function create($connection)
+    {
+        $userID = $this->User_Id;
+        $permission = $this->Permission_Id;
+        
+        // Assuming your database table name is 'user_account_permissions'
+        $query = "INSERT INTO users_account_permission (User_Id, Permission_Id) VALUES ('$userID', '$permission')";
+        $statement = $connection->prepare($query);
+        
+        if ($statement->execute()) {
+            return true; // Insertion successful
+        } else {
+            // Handle the case where insertion fails
+            return false;
+        }
+    }
     
 }
 

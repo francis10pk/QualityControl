@@ -107,7 +107,7 @@
 </head>
 <body>
     <div id="sidebar">
-        <img src="/QualityControl/class/logo-search-grid-1x (8).jpg" alt="Your Logo">
+        <img src="/QualityControl/img/logo.jpg" alt="Your Logo">
     </div>
     
     <h1 id="h1">Service Dashboard</h1>
