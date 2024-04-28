@@ -19,7 +19,7 @@ function displayDashboardFeatures($permission)
             echo "<h3>Admin Options:</h3>";
             echo "<ul>";
             echo "<li><a href='user.php'>Manage User Account</a></li>";
-            echo "<li><a href='NewEmployee.php'>Manage Employee</a></li>";
+            echo "<li><a href='NewEmployeeForm.php'>Manage Employee</a></li>";
             echo "<li><a href='MainPanel.php'>Employee Access</a></li>";
             echo "<li><a href='client.php'>Client Access</a></li>";
             echo "</ul>";
