@@ -234,10 +234,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     $OS1 = new OrderServiceClass();
                     $OS1->setOrderService_Id($OrderService_Id);
-                    
-                    //--ComponenteSerie_Id---//
-                    
-                    $OS1->setComponentSerie_Id($ComponentSerie_Id);
+
                     //llamanos al metodo update de la clase OrderServiceClass
                     $result = $OS1->update("c", $connection);
                     if($result == true) {
@@ -279,16 +276,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 case "SearchByID":
                     
                   
-                    $OrderService_Id = $_POST["OrderService_Id"];   
+                    $OrderService_Id = $_POST["OrderService_Id"];  
                     $OS3 = new OrderServiceClass();
                     $OS3->setOrderService_Id($OrderService_Id);
                     $result = $OS3->getOrderServiceById($connection);
-                    $OrderService = unserialize($result);
                     
-                    if(!empty($OrderService))
+                    if(!empty($result))
                     {
-                        
-                        OrderServiceClass::displayOrderService($OrderService);
+                        OrderServiceClass::displayOrderService($result);
                     }
                     else
                         echo "The Order Service number:".$OS3->getOrderService_Id()." doesn't exist<br/>";

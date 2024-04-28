@@ -272,30 +272,31 @@ class OrderServiceClass
         echo OrderServiceClass::getHeader();
         foreach ($listOrderServices as $orderService) 
             echo $orderService;
-            echo OrderServiceClass::getFooter();      
+        echo OrderServiceClass::getFooter();      
     }
 
     public function getOrderServiceById($connection)
     {
+                
         $OrderService_Id = $this->orderService_Id;
         $sqlStmt = "Select * from order_service where OrderService_Id = '$OrderService_Id'";
         $prepStmt = $connection->prepare($sqlStmt);
-        $prepStmt->bindParam(":Id", $Id, PDO::PARAM_INT);
         $prepStmt->execute();
-        $result = $prepStmt->fetchAll();
-        $os="";
-        if (sizeof($result) > 0) 
-        {   
+        $results = $prepStmt->fetchAll(PDO::FETCH_ASSOC);
+        $orders=[];
+        
+        foreach ($results as $result) {
             $os = new OrderServiceClass();
-            $os->getOrderService_Id($result[0]['OrderService_Id']);
-            $os->getClient_Id($result[0]['Client_Id']);
-            $os->getComponentSerie_Id($result[0]['ComponenteSerie_Id']);
-            $os->getStatus_Id($result[0]['Status_Id']);
-            $os->getBilling_Id($result[0]['Billing_Id']);
-            $os->getDescription($result[0]['Description']);
-            $os->getDateRegister($result[0]['DateRegister']);
+            $os->orderService_Id = ($result['OrderService_Id']);
+            $os->client_Id = ($result['Client_Id']);
+            $os->componentSerie_Id = ($result['ComponenteSerie_Id']);
+            $os->status_Id = ($result['Status_Id']);
+            $os->billing_Id = ($result['Billing_Id']);
+            $os->description = ($result['Description']);
+            $os->dateRegister = ($result['DateRegister']);
+            $orders[] = $os;
         }
-        return serialize($os);
+        return serialize($orders);
     }
     
     
