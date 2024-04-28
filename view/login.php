@@ -109,11 +109,23 @@
                         $_SESSION['username'] = $username;
                         $_SESSION['permission'] = $permission_id;
                         
-                        
+                        switch ($permission_id) 
+                        {
+                            case 1:
+                                header("Location: dashboard.php");
+                                break;
+                            case 2:
+                                header("");
+                                break;
+                            case 3:
+                                header("");
+                                break;
+                        }
+
+                        exit();
                         
                         // Redirect to dashboard upon successful login
-                        header("Location: dashboard.php");
-                        exit();
+                        
                     } else {
                         // Error fetching permission
                         echo "<p class='error-message'>Error fetching permission.</p>";

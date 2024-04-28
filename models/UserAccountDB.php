@@ -1,6 +1,6 @@
 <?php
     //require_once 'Service_OrderClass.php';
-    use class\UsersAccountsClass;
+    use \class\UsersAccountsClass;
     require_once '../models/dbconfig.php';
 
     require '../class/UsersAccountsClass.php';
@@ -124,4 +124,4 @@
             echo "Connection failed: " . $e->getMessage();
         }
     }
-    ?>
+    
