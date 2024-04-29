@@ -18,7 +18,7 @@
         background-color: blue;
         position: fixed; /* Sidebar fixed position */
         top: 0; /* Position at the top of the viewport */
-        left: 0; /* Position at the left of the viewport */
+        left: 0; 
         display: flex; /* Use flexbox layout for positioning */
         align-items: flex-start; /* Align items at the top of the sidebar */
         justify-content: flex-start; /* Justify content at the start (left) of the sidebar */
@@ -170,12 +170,7 @@
     
 <!--     <div id="formContent" class="formContent"> -->
         <?php
-//         try {
-//             $request = new NewRequestClass(0, 0, 0, '', 0,0, '');
-//             $request->listAllRequest($connection);
-//         } catch (PDOException $e) {
-//             // Handle exceptions
-//         }
+
         ?>
     </div>
     

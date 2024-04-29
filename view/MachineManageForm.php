@@ -154,16 +154,10 @@ a {
     </form>
 <?php
 require_once 'C:\xampp\htdocs\QualityControl\Model\dbconfig.php';
-use cls\MachineClass;
+use \class\MachineClass;
 require 'C:\xampp\htdocs\QualityControl\cls\OrderServiceClass.php';
  
-/*
-spl_autoload_register(function ($class) {
-if (file_exists(str_replace('\\', '/', $class) . '.php')) {
-require_once str_replace('\\', '/', $class) . '.php';
-}
-});
-*/
+
  
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     

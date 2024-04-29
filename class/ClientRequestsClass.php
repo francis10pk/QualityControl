@@ -160,7 +160,7 @@ class ClientRequestsClass
     
 
     
-    function listAllRequest()
+    function listAllRequest($connection)
     {
         global $connection;
         $sqlStmt = "SELECT client_requests.*,clients.ClientName,status.State FROM client_requests

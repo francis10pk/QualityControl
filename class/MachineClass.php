@@ -1,5 +1,5 @@
 <?php
-namespace cls;
+namespace class;
 
 
 class MachineClass
@@ -8,7 +8,7 @@ class MachineClass
     private $Model;
     private $MachineLine;
     
-    public function __construct($MachineCode,$Model,$MachineLine)
+    public function __construct($MachineCode = null,$Model = null ,$MachineLine= null)
     {
         $this->MachineCode=$MachineCode;
         $this->Model=$Model;
@@ -74,12 +74,7 @@ class MachineClass
         return "</table>";
     }
     
-    public function __toString()
-    {
-        
-        $data = "<tr><td>$this->studentid</td><td>$this->MachineCode</td><td>$this->Model</td><td>$this->MachineLine</td></tr>";
-        return $data;
-    }
+   
     
     public function __call($method, $args)
     {
