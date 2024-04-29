@@ -278,7 +278,6 @@ class BudgetRepairClass
         $budget_Id = $this->budget_Id;
         $sqlStmt = "SELECT * FROM budget_repair WHERE Budget_Id = '$budget_Id'";
         $prepStmt = $connection->prepare($sqlStmt);
-        $prepStmt = bindParam(':Budget_Id', $budget_Id, PDO::PARAM_INT);
         $prepStmt->execute();
         $result = $prepStmt->fetchAll();
         $b = "";

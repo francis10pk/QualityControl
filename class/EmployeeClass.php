@@ -204,7 +204,7 @@ class EmployeeClass
     
     public function __toString()
     {
-        return "<tr>
+        $str = "<tr>
                     <td>$this->employee_Id</td>
                     <td>$this->firstName</td>
                     <td>$this->lastName</td>

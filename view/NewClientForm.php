@@ -177,7 +177,7 @@ a {
 </form>
 <?php
 require_once '../models/dbconfig.php';
-use class\ClientClass;
+use \class\ClientClass;
 require 'C:\xampp\htdocs\QualityControl\class\ClientClass.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -272,7 +272,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 case "SearchClient":
                     $Client_Id = $_POST["Client_Id"];
                     $C3 = new ClientClass();
-                    $result = $C3->getClientById($Client_Id, $connection);
+                    $result = $C3->getClientById($connection);
                     $C3->displayClient($result);
                     break;
                     

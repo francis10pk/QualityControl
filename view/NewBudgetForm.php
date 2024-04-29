@@ -167,7 +167,7 @@ a {
 </form>
 <?php
 require_once '../models/dbconfig.php';
-use class\BudgetRepairClass;
+use \class\BudgetRepairClass;
 require 'C:\xampp\htdocs\QualityControl\class\BudgetRepairClass.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -254,6 +254,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $B2 = new BudgetRepairClass();
                     $result = $B2->getAllBudgetRepair($connection);
                     $B2->displayBudgetRepair($result);
+                    break;
+                case "SearchClient":
+                    $B3 = new BudgetRepairClass();
                     break;   
                 default:
                     break;                                      

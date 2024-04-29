@@ -190,7 +190,7 @@ a {
 </form>
 <?php
 require_once '../models/dbconfig.php';
-use class\EmployeeClass;
+use \class\EmployeeClass;
 require 'C:\xampp\htdocs\QualityControl\class\EmployeeClass.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
