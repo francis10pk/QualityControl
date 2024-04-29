@@ -21,7 +21,7 @@ function displayDashboardFeatures($permission)
             echo "<li><a href='user.php'>Manage User Account</a></li>";
             echo "<li><a href='NewEmployeeForm.php'>Manage Employee</a></li>";
             echo "<li><a href='MainPanel.php'>Employee Access</a></li>";
-            echo "<li><a href='client.php'>Client Access</a></li>";
+            echo "<li><a href='ClientPanelUpdate.php'>Client Access</a></li>";
             echo "</ul>";
             break;
         case 2: // Client
@@ -86,6 +86,18 @@ function displayDashboardFeatures($permission)
         .dashboard-features li a:hover {
             text-decoration: underline;
         }
+        .logout-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .logout-link:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -98,6 +110,6 @@ function displayDashboardFeatures($permission)
     displayDashboardFeatures($permission);
     ?>
 </div>
-
+<a href="login.php" class="logout-link">Logout</a>
 </body>
 </html>

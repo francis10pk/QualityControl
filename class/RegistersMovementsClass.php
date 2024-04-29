@@ -151,7 +151,7 @@ class RegistersMovementsClass
     
     public static function getHeader()
     {
-        $str = "<table border='1'>";
+        $str = "<div style = 'margin-bottom: 20px'><table border='1'>";
         $str .= "<tr>
                     <th>Mov_Id</th>
                     <th>OrderService_Id</th>
@@ -167,7 +167,7 @@ class RegistersMovementsClass
     
     public static function getFooter()
     {
-        $str = "</table>";
+        $str = "</table><div>";
         return $str;
     }
     
@@ -190,7 +190,6 @@ class RegistersMovementsClass
     
     public function create($connection)
     {
-        //$Mov_Id = $this->mov_Id;  autoincrement
         $orderService_Id = $this->orderService_Id;
         $process_Id = $this->process_Id;
         $employee_Id = $this->employee_Id;
@@ -203,45 +202,7 @@ class RegistersMovementsClass
         $result = $connection->exec($sqlStmt);
         return $result;
     }
-    public function __call($method, $args)
-    {
-        $result = null;
-        if($method == "Update")
-        {
-            $mov_Id = $this->mov_Id;
-            $opType = $args[0];
-            $connection = $args[1];
-            
-            if($opType == "o") {
-                $orderService_Id = $this->orderService_Id;
-                $sqlStmt = "UPDATE registers_movements SET OrderService_Id = '$orderService_Id' WHERE Mov_Id = '$mov_Id'";
-                $result = $connection->exec($sqlStmt);
-             }
-             elseif ($opType == "p") 
-             {  
-                 $process_Id = $this->process_Id;
-                 $sqlStmt = "UPDATE registers_movements SET Process_Id = '$process_Id' WHERE Mov_Id = '$mov_Id'";
-                 $result = $connection->exec($sqlStmt);                 
-             }
-             elseif ($opType == "e") {
-                $employee_Id = $this->employee_Id;
-                $sqlStmt = "UPDATE registers_movements SET Employee_Id = '$employee_Id' WHERE Mov_Id = '$mov_Id'";
-                $result = $connection->exec($sqlStmt);
-            }
-            elseif ($opType == "d") {
-                $description = $this->description;
-                $sqlStmt = "UPDATE registers_movements SET Description = '$description' WHERE Mov_Id = '$mov_Id'";
-                $result = $connection->exec($sqlStmt);
-            }
-            else {
-                $upload_Document = $this->upload_Document;
-                $sqlStmt = "UPDATE registers_movements SET Upload_Document = '$upload_Document' WHERE Mov_Id = '$mov_Id'";
-                $result = $connection->exec($sqlStmt);
-            }
-                
-        }return $result;
-    }
-    
+      
     public function getAllMovements($connection)
     {
         $count= 0;
@@ -275,30 +236,7 @@ class RegistersMovementsClass
         echo RegistersMovementsClass::getFooter();
     }
     
-    public function getMovementByOS($connection)
-    {
-        
-        $OrderService_Id = $this->orderService_Id;
-        $sqlStmt = "Select * from registers_movements where OrderService_Id = '$OrderService_Id'";
-        $prepStmt = $connection->prepare($sqlStmt);
-        $prepStmt->execute();
-        $results = $prepStmt->fetchAll(PDO::FETCH_ASSOC);
-        $orders=[];
-        
-        foreach ($results as $result) {
-            $mv = new OrderServiceClass();
-            $mv->mov_Id = ($result['Mov_Id']);
-            $mv->orderService_Id = ($result['OrderService_Id']);
-            $mv->process_Id = ($result['ComponenteSerie_Id']);
-            $mv->employee_Id = ($result['Employee_Id']);
-            $mv->dateRegister = ($result['DateRegister']);
-            $mv->description = ($result['Description']);
-            $mv->Upload_Document = ($result['Upload_Document']);
-            $orders[] = $mv;
-        }
-        return serialize($orders);
-    }
-    
+ 
     
     public function searchByOrderServiceId($connection, $orderServiceId)
     {
@@ -306,13 +244,26 @@ class RegistersMovementsClass
             // Preparar la consulta SQL
             $sql = "SELECT * FROM registers_movements WHERE orderService_Id = $orderServiceId";
             $statement = $connection->prepare($sql);
-            $statement->bindParam(':orderServiceId', $orderServiceId);
             
             // Ejecutar la consulta
             $statement->execute();
             
             // Obtener y devolver los resultados
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $orders = [];
+            foreach ($results as $result) {
+                $mv = new RegistersMovementsClass();
+                $mv->mov_Id = ($result['Mov_Id']);
+                $mv->orderService_Id = ($result['OrderService_Id']);
+                $mv->process_Id = ($result['Process_Id']);
+                $mv->employee_Id = ($result['Employee_Id']);
+                $mv->dateRegister = ($result['DateRegister']);
+                $mv->description = ($result['Description']);
+                $mv->Upload_Document = ($result['Upload_Document']);
+                $orders[] = $mv;
+            }
+            return serialize($orders);
+        
         } catch (PDOException $error) {
             // Manejar errores
             echo "Error : " . $error->getMessage();

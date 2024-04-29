@@ -112,6 +112,15 @@ h1 {
 .column3 {
 	padding: 0px;
 }
+.bottom-left {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+}
 </style>
 </head>
 <body>
@@ -121,7 +130,6 @@ h1 {
 <div class = "column1">
 <hr>
 <div class="section">
-<a href="MainPanel.php">Exit</a>
 <h1> DASHBOARD CLIENT</h1>
 </div>
 <hr>
@@ -164,7 +172,7 @@ h1 {
                 </tr>
                 <tr>
                     <th>Upload Document</th>
-                    <td><input type="text" name= "Upload_Document" id="Upload_Document" /></td>
+                    <td><div><input type="text" name= "Upload_Document" id="Upload_Document" /><input type="file"/></div></td>
                 </tr>                
                 
             </table>        
@@ -183,7 +191,7 @@ h1 {
     
     	<div class="button-searchBy">  		
     		
-    		<button type="submit" name="operation" value="SearchByID">Search Order by OS</button>
+    		<button type="submit" name="operation" value="SearchByID">Search Order by OSID</button>
     	</div>
     		<hr>
     </div>
@@ -194,13 +202,7 @@ h1 {
 require_once 'C:\xampp\htdocs\QualityControl\models\dbconfig.php';
 require 'C:\xampp\htdocs\QualityControl\class\RegistersMovementsClass.php';
 use \class\RegistersMovementsClass;
-/*
- spl_autoload_register(function ($class) {
- if (file_exists(str_replace('\\', '/', $class) . '.php')) {
- require_once str_replace('\\', '/', $class) . '.php';
- }
- });
- */
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -228,56 +230,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($isInserted == true) {
                         echo "Register Movement inserted successfully";
                     }
-                    break;                    
+                    break;                        
                                        
-                case "Update":
-                    
-                    $Mov_Id = $_POST["Mov_Id"];
-                    $OrderService_Id = $_POST["OrderService_Id"];
-                    $Process_Id = $_POST["Process_Id"];
-                    $Employee_Id = $_POST["Employee_Id"];
-                    $Description = $_POST["Description"];
-                    $Upload_Document = $_POST["Upload_Document"];
-                    //$DateRegister = $_POST["DateRegister"];
-                        
-                    $RM1 = new RegistersMovementsClass();
-                    $RM1->setMov_Id($Mov_Id);
-                    
-                    //--OrderService_Id--//
-                    $RM1->setOrderService_Id($OrderService_Id);
-                    $result = $RM1->update("o", $connection);
-                    if ($result == true) {
-                        echo "Order Service updated";                        
-                    }
-                    
-                    //--Process_Id--//
-                    $RM1->setProcess_Id($Process_Id);
-                    $result = $RM1->update("p", $connection);
-                    if ($result == true) {
-                        echo "Process updated";
-                    }
-                    //--Employee_Id--//
-                    $RM1->setEmployee_Id($Employee_Id);
-                    $result = $RM1->update("e", $connection);
-                    if ($result == true) {
-                        echo "Employee updated";
-                    }
-                    
-                    //--Description--//
-                    $RM1->setDescription($Description);
-                    $result = $RM1->update("d", $connection);
-                    if ($result == true) {
-                        echo "Description updated";
-                    }
-                    
-                    //--Upload Document--//
-                    $RM1->setUpload_Document($Upload_Document);
-                    $result = $RM1->update("u", $connection);
-                    if ($result == true) {
-                        echo " Document updated <br/>";
-                    }
-                    break;                    
-                    
+                
                 case "Search":
                     
                     $RM2 = new RegistersMovementsClass();
@@ -286,20 +241,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     break;
                                       
                     
-                case "SearchByOS":                   
-                    
-                  
+                case "SearchByID":                   
+
                     $OrderService_Id = $_POST["OrderService_Id"];  
+                    
                     $OS3 = new RegistersMovementsClass();
                     $OS3->setOrderService_Id($OrderService_Id);
                     $result = $OS3->searchByOrderServiceId($connection,$OrderService_Id);
-                    
                     if(!empty($result))
                     {
                         RegistersMovementsClass::displayMovements($result);
                     }
                     else
-                        echo "The Order Service number:".$OS3->getOrderService_Id()." doesn't exist<br/>";
+                        echo "<p>The Order Service number: ".$OS3->getOrderService_Id()." doesn't exist</p>";
                     
                 default:
                     break;
@@ -309,6 +263,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $e->getMessage();
     }
 }
+?>
+
+<?php
+    echo '<a  class="bottom-left" href="dashboard.php" class="button">Back</a>';
 ?>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 namespace class;
+use Exception;
 class UsersAccountsClass
 {
     private $User_Id;
@@ -142,31 +143,51 @@ class UsersAccountsClass
     public function __call($method, $args) {
         if ($method == "create") 
         {
-            
+            if (count($args) < 2) {
+                throw new Exception("Insufficient arguments for create operation");
+            }
+            $opType = $args[0];
+            $connection = $args[1];
+
+            if (!in_array($opType, ["c", "e"])) {
+                throw new Exception("Invalid operation type");
+            }
             $username = $this->UserName;
             $password = $this->Password;
             $status_id = $this->Status_Id;
             $data_register = $this->DataRegister;
             
-            $opType = $args[0];
-            $connection = $args[1];
+            
             
             if ($opType == "c") {
                 $client_id = $this->Client_Id;
                 // Construct SQL statement to update phone
                 $sqlStmt = "INSERT INTO users_account (Client_ID, UserName, Password, Status_Id, DataRegister)
-          VALUES ('$client_id', '$username', '$password', '$status_id', '$data_register')";
-                
-                $result = $connection->exec($sqlStmt);
-                return $result;
+                VALUES ('$client_id', '$username', '$password', '$status_id', '$data_register')";
+
             } elseif ($opType == "e") {
                 $employee_id = $this->Employee_Id;
-                // Construct SQL statement to update email
                 $sqlStmt = "INSERT INTO users_account (Employee_Id, UserName, Password, Status_Id, DataRegister)
-          VALUES ('$employee_id', '$username', '$password', '$status_id', '$data_register')";
+                VALUES ('$employee_id', '$username', '$password', '$status_id', '$data_register')";
                 
+            }
+            try{
                 $result = $connection->exec($sqlStmt);
                 return $result;
+            }catch (\PDOException $e) {
+                if ($e->getCode() == '23000') {
+                    if(isset($_SERVER['HTTP_REFERER'])) {
+                        echo '<form style="text-align: center; margin-top: 20px;" action="' . $_SERVER['HTTP_REFERER'] . '" method="get">';
+                        echo '<input type="submit" style="padding: 10px 20px; font-size: 16px;" value="Go Back">';
+                        echo '</form>';
+                    } else {
+                        echo '<p>Unable to determine previous page.</p>';
+                    }
+                    throw new Exception("Unique constraint violation: " . $e->getMessage());
+                } else {
+
+                    throw $e;
+                }
             }
             
         }
@@ -196,6 +217,19 @@ class UsersAccountsClass
             return $result;
         }
     }
+    public function getClientbyUsername($connection){
+        $username = $this->UserName;
+        
+        $sqlStmt = "SELECT User_Id FROM users_account WHERE UserName = '$username'";
+        $prepStmt = $connection->prepare($sqlStmt);
+        $prepStmt->execute();
+        $result = $prepStmt->fetch();
+        if (sizeof($result) > 0) {
+            $c = new UsersAccountsClass();
+            $c->setUser_Id($result['User_Id']);
+        }
+        return $c;
+    } 
     
 }
 

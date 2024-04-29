@@ -175,7 +175,7 @@ a {
 </form>
 <?php
 require_once 'C:\xampp\htdocs\QualityControl\models\dbconfig.php';
-use \cls\RegistersMovementsClass;
+use \class\RegistersMovementsClass;
 require 'C:\xampp\htdocs\QualityControl\cls\RegistersMovementsClass.php';
 
 /*

@@ -95,6 +95,15 @@ a {
 	color: white;
 	
 }
+.bottom-left {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+}
 </style>
 </head>
 <body>
@@ -272,8 +281,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 case "SearchClient":
                     $Client_Id = $_POST["Client_Id"];
                     $C3 = new ClientClass();
+                    $C3->setClient_Id($Client_Id);
                     $result = $C3->getClientById($connection);
-                    $C3->displayClient($result);
+                    $C3->displayClients($result);
+                    
                     break;
                     
                 default:
@@ -291,7 +302,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 }
 ?>
-
+<?php
+    echo '<a  class="bottom-left" href="dashboard.php" class="button">Back</a>';
+?>
 </body>
 </html>
 

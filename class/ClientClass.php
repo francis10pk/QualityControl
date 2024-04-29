@@ -1,7 +1,8 @@
 <?php
 namespace class;
 
-
+use PDO;
+use PDOException;
 class ClientClass
 {
     private $client_Id;
@@ -292,25 +293,29 @@ class ClientClass
         echo ClientClass::getHeader();
         foreach ($listOfClients as $client) 
             echo $client;        
-            echo ClientClass::getFooter();
+        echo ClientClass::getFooter();
     }
     public function getClientById($connection)
     {
         $client_Id = $this->client_Id;
-        $sqlStmt = "SELECT * FROM clients WHERE client_Id = '$client_Id'";
-        $query = $connection->query($sqlStmt);
-        $oneRec = $query->fetch();
-        $client = new ClientClass();
-        $client->client_Id = $oneRec["Client_Id"];
-        $client->clientCode = $oneRec["ClientCode"];
-        $client->clientName = $oneRec["ClientName"];
-        $client->status_Id = $oneRec["Status_Id"];
-        $client->address = $oneRec["Address"];
-        $client->email = $oneRec["Email"];
-        $client->phoneNumber = $oneRec["PhoneNumber"];
-        $client->dateRegister = $oneRec["DateRegister"];
-
-        return serialize($client);
+        $sqlStmt = "SELECT * FROM clients WHERE Client_Id = '$client_Id'";
+        $query = $connection->prepare($sqlStmt);
+        $query->execute();
+        $oneRecs = $query->fetchAll(PDO::FETCH_ASSOC);
+        $arr = [];
+        foreach ($oneRecs as $oneRec) {
+            $client = new ClientClass();
+            $client->client_Id = $oneRec["Client_Id"];
+            $client->clientCode = $oneRec["ClientCode"];
+            $client->clientName = $oneRec["ClientName"];
+            $client->status_Id = $oneRec["Status_Id"];
+            $client->address = $oneRec["Address"];
+            $client->email = $oneRec["Email"];
+            $client->phoneNumber = $oneRec["PhoneNumber"];
+            $client->dateRegister = $oneRec["DateRegister"];
+            $arr[]= $client;
+        }
+        return serialize($arr);
     }
   
     

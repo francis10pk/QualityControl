@@ -30,7 +30,8 @@
                         if ($userType === 'client') {
                             $user = new UsersAccountsClass($id, null, $username, $password, $status_id, $data_register);
                             $isInserted = $user->create("c",$connection);
-                            $permission = new UserAccountPermissionClass($userID, 2);
+                            $userTofind = $user->getClientbyUsername($connection);
+                            $permission = new UserAccountPermissionClass($userTofind->getUser_Id(), 2);
                             $permission->create($connection);
                             if ($isInserted) {
                                 
@@ -41,7 +42,8 @@
                         } elseif ($userType === 'employee') {
                             $user = new UsersAccountsClass(null, $id, $username, $password, $status_id, $data_register);
                             $isInserted = $user->create("e",$connection);
-                            $permission = new UserAccountPermissionClass($userID, 3);
+                            $userTofind = $user->getClientbyUsername($connection);
+                            $permission = new UserAccountPermissionClass($userTofind->getUser_Id(), 2);
                             $permission->create($connection);
                             if ($isInserted) {
                                 $notificationMessage = "The User with the Username $username has been added successfully.";
