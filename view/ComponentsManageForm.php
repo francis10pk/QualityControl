@@ -109,15 +109,14 @@ a {
 </head>
 <body>
  
-<form action="NewOrderServiceForm.php" method="post">
+<form action="ComponentsManageForm.php" method="post">
 <div class ="container">
 <div class = "column1">
 <hr>
 <div class="section">
 <a href="MainPanel.php">Go Main Panel</a>
 </div>
-<hr>
- 
+<hr> 
 </div>
     <div class = "column2">
         <h1>Components Maintenance Form</h1>
@@ -150,12 +149,13 @@ a {
     		<button type="submit" name="operation" value="List">List Of Components</button>
     	</div>
     
-    </div> 	
+    </div> 
+    </div>	
     </form>
 <?php
-//require_once 'C:\xampp\htdocs\QualityControl\Model\dbconfig.php';
+require_once 'C:\xampp\htdocs\QualityControl\models\dbconfig.php';
 use cls\ComponentClass;
-//require 'C:\xampp\htdocs\QualityControl\cls\Com.php';
+require 'C:\xampp\htdocs\QualityControl\cls\ComponentClass.php';
  
 /*
 spl_autoload_register(function ($class) {
