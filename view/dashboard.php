@@ -27,7 +27,7 @@ function displayDashboardFeatures($permission)
         case 2: // Client
             echo "<h3>Client Options:</h3>";
             echo "<ul>";
-            echo "<li><a href='client.php'>Check Status</a></li>";
+            echo "<li><a href='ClientPanelUpdate.php'>Check Status</a></li>";
             echo "</ul>";
             break;
         case 3: // Employee (or other permission levels)

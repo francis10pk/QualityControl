@@ -274,29 +274,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
 }
-/*
-function listOS() {
-    // Realiza la conexión a la base de datos (asegúrate de configurar los detalles de conexión correctamente)
-    $connection = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
-    
-    // Prepara la consulta SQL para obtener las órdenes de servicio
-    $consulta = $connection->prepare("SELECT OrderService_Id FROM order_service");
-    
-    // Ejecuta la consulta
-    $consulta->execute();
-    
-    // Obtiene todas las filas de resultados
-    $OrderService = $consulta->fetchAll(PDO::FETCH_ASSOC);
-    
-    foreach ($OrderService as $os) {
-        echo "<option value='" . $os['OrderService_Id'] . "'</option>";
-    }
-    
-    // Devuelve el resultado
-    return $os;
-}
 
-*/
 
 ?>
 </body>

@@ -1,6 +1,6 @@
 <?php
 
-namespace cls;
+namespace class;
 
 
 use PDO;
