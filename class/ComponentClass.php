@@ -4,16 +4,19 @@ namespace cls;
 
 class ComponentClass
 {
-    private $Serie_id;
-    private $Component_code;
-    private $ComponentName;
+    private $serie_id;
+    private $component_code;
+    private $componenteName;
     
     
-    public function __construct($Serie_id = null,$Component_code = null ,$ComponentName = null )
+    public function __construct
+    ($serie_id = null,
+     $component_code = null, 
+     $componenteName = null)
     {
-        $this->Serie_id=$Serie_id;
-        $this->Component_code=$Component_code;
-        $this->ComponentName=$ComponentName;
+        $this->serie_id=$serie_id;
+        $this->somponent_code=$component_code;
+        $this->componenteName=$componenteName;
         
     }
     
@@ -23,7 +26,7 @@ class ComponentClass
      */
     public function getSerie_id()
     {
-        return $this->Serie_id;
+        return $this->serie_id;
     }
 
     /**
@@ -31,7 +34,7 @@ class ComponentClass
      */
     public function getComponent_code()
     {
-        return $this->Component_code;
+        return $this->component_code;
     }
 
     /**
@@ -39,31 +42,31 @@ class ComponentClass
      */
     public function getComponentName()
     {
-        return $this->ComponentName;
+        return $this->componentName;
     }
 
     /**
      * @param mixed $Serie_id
      */
-    public function setSerie_id($Serie_id)
+    public function setSerie_id($serie_id)
     {
-        $this->Serie_id = $Serie_id;
+        $this->serie_id = $serie_id;
     }
 
     /**
      * @param mixed $Component_code
      */
-    public function setComponent_code($Component_code)
+    public function setComponent_code($component_code)
     {
-        $this->Component_code = $Component_code;
+        $this->component_code = $component_code;
     }
 
     /**
      * @param mixed $ComponentName
      */
-    public function setComponentName($ComponentName)
+    public function setComponenteName($componenteName)
     {
-        $this->ComponentName = $ComponentName;
+        $this->componenteName = $componenteName;
     }
     public static function getHeader()
     {
@@ -79,7 +82,7 @@ class ComponentClass
     public function __toString()
     {
         
-        $data = "<tr><td>$this->Serie_id</td><td>$this->Component_code</td><td>$this->ComponentName</td></tr>";
+        $data = "<tr><td>$this->Serie_id</td><td>$this->Component_code</td><td>$this->ComponenteName</td></tr>";
         return $data;
     }
     
@@ -87,18 +90,18 @@ class ComponentClass
     {
         if ($method == "update") {
             
-            $serie_id = $this ->Serie_id;
+            $serie_id = $this ->serie_id;
             $opType = $args[0];
             $connection = $args[1];
             
             if ($opType == "p") {
  
-                $component_code = $this ->Component_code;
+                $component_code = $this ->component_code;
                 $sqlStmt = "update components set Component_code='$component_code' where Serie_id=$serie_id";
                 $result = $connection->exec($sqlStmt);
             } else {
-                $ComponenteName = $this ->ComponentName;
-                $sqlStmt = "update components set ComponenteName='$ComponenteName' where Serie_id=$serie_id";
+                $componenteName = $this ->componentName;
+                $sqlStmt = "update components set ComponenteName='$componenteName' where Serie_id=$serie_id";
                 $result = $connection->exec($sqlStmt);
             }
             
@@ -112,10 +115,10 @@ class ComponentClass
         // sql stmt : insert....
         
         $serie_id = $this ->Serie_id;
-        $component_code = $this ->Component_code;
-        $ComponenteName = $this ->ComponentName;
+        $component_code = $this ->component_code;
+        $componenteName = $this ->componenteName;
         
-        $sqlStmt="insert into components values($serie_id,'$component_code','$ComponenteName')";
+        $sqlStmt="insert into components values($serie_id,'$component_code','$componenteName')";
         $result = $connection->exec($sqlStmt);
         return $result;
         // connection
@@ -123,7 +126,9 @@ class ComponentClass
     
     public  function delete($connection)
     {
-
+        // processing  : delete a  component
+        // sql stmt : delete....
+        
         $serie_id = $this ->Serie_id;
         $sqlStmt="delete from components where Serie_Id=$serie_id";
         $result = $connection->exec($sqlStmt);
@@ -141,8 +146,8 @@ class ComponentClass
         {
             $component = new ComponentClass();
             $component->setSerie_id($oneRec['Serie_Id']);
-            $component->setComponent_code($oneRec['$component_code']);
-            $component->setComponentName($oneRec['ComponenteName']);
+            $component->setComponent_code($oneRec['$Component_code']);
+            $component->setComponenteName($oneRec['ComponenteName']);
             $listOfComponents[$count++]=$component;
             
         }
