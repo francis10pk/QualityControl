@@ -9,7 +9,7 @@ class ComponentClass
     private $ComponentName;
     
     
-    public function __construct($Serie_id,$Component_code,$ComponentName)
+    public function __construct($Serie_id = null,$Component_code = null ,$ComponentName = null )
     {
         $this->Serie_id=$Serie_id;
         $this->Component_code=$Component_code;
@@ -79,7 +79,7 @@ class ComponentClass
     public function __toString()
     {
         
-        $data = "<tr><td>$this->studentid</td><td>$this->Serie_id</td><td>$this->Component_code</td><td>$this->ComponentName</td></tr>";
+        $data = "<tr><td>$this->Serie_id</td><td>$this->Component_code</td><td>$this->ComponentName</td></tr>";
         return $data;
     }
     
@@ -123,9 +123,7 @@ class ComponentClass
     
     public  function delete($connection)
     {
-        // processing  : delete a  component
-        // sql stmt : delete....
-        
+
         $serie_id = $this ->Serie_id;
         $sqlStmt="delete from components where Serie_Id=$serie_id";
         $result = $connection->exec($sqlStmt);

@@ -55,7 +55,10 @@ class MachineClass
     {
         $this->Model = $Model;
     }
-
+    public function __toString(){
+        $data = "<tr><td>$this->MachineCode</td><td>$this->Model</td><td>$this->MachineLine</td></tr>";
+        return $data;
+    }
     /**
      * @param mixed $MachineLine
      */
@@ -127,7 +130,7 @@ class MachineClass
         // connection
     }
     
-    public function getAllMachines($connection)
+    public static function getAllMachines($connection)
     {
         $count=0;
         $sqlStmt = "Select * from machines";
@@ -137,9 +140,9 @@ class MachineClass
         {
             $machine = new MachineClass();
             
-            $machine->setOrderService_Id($oneRec['MachineCode']);
-            $machine->setClient_Id($oneRec['Model']);
-            $machine->setComponentSerie_Id($oneRec['MachineLine']);
+            $machine->setMachineCode($oneRec['MachineCode']);
+            $machine->setModel($oneRec['Model']);
+            $machine->setMachineLine($oneRec['MachineLine']);
            
             
             $listOfMachines[$count++]=$machine;
@@ -155,7 +158,7 @@ class MachineClass
         echo MachineClass::getHeader();
         foreach ($listMachines as $machine)
             echo $machine;
-            echo MachineClass::getFooter();
+        echo MachineClass::getFooter();
     }
     
 }

@@ -109,7 +109,7 @@ a {
 </head>
 <body>
  
-<form action="NewOrderServiceForm.php" method="post">
+<form action="MachineManageForm.php" method="post">
 <div class ="container">
     <div class = "column1">
     <hr>
@@ -124,7 +124,7 @@ a {
                 <table border='1'>	
                     <tr>
                         <th>Machine code</th> 				
-                        <td><input type="text" name= "Machine code" id="Machine_code" /></td>
+                        <td><input type="text" name= "Machine_code" id="Machine_code" /></td>
                     </tr>
                     <tr>
                         <th>Model</th>				
@@ -162,7 +162,7 @@ a {
 require_once 'C:\xampp\htdocs\QualityControl\models\dbconfig.php';
 use \class\MachineClass;
 require 'C:\xampp\htdocs\QualityControl\class\OrderServiceClass.php';
- 
+require 'C:\xampp\htdocs\QualityControl\class\MachineClass.php';
 
  
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -226,10 +226,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     break;
                     
                 case "List":
-                    
-                    $OS2 = new MachineClass();
-                    $result = $OS2->getAllMachines($connection);
-                    $OS2->displayMachine($result);
+                    $m3 = new MachineClass();
+                    $result = MachineClass::getAllMachines($connection);
+                    $m3->displayMachine($result);
                     break;
                   
                 default:
