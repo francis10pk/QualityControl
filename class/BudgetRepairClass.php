@@ -270,7 +270,7 @@ class BudgetRepairClass
        echo BudgetRepairClass::getHeader();
        foreach ($listOfBudgets as $budget) 
             echo $budget;
-            echo BudgetRepairClass::getFooter();  
+        echo BudgetRepairClass::getFooter();  
     }
     
     public function getBudgetById($connection)
@@ -280,7 +280,7 @@ class BudgetRepairClass
         $prepStmt = $connection->prepare($sqlStmt);
         $prepStmt->execute();
         $result = $prepStmt->fetchAll();
-        $b = "";
+        $budget = [];
         if (sizeof($result) > 0) {
             $b = new BudgetRepairClass();
             $b->setBudget_Id($result[0]['Budget_Id']);
@@ -290,8 +290,9 @@ class BudgetRepairClass
             $b->setDeliveryTerm($result[0]['DeliveryTerm']);
             $b->setEmployee_Id($result[0]['Employee_Id']);
             $b->setDateRegister($result[0]['DateRegister']);
+            $budget[]= $b;
         }
-        return serialize($b);
+        return serialize($budget);
     }      
     
 }

@@ -257,6 +257,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     break;
                 case "SearchClient":
                     $B3 = new BudgetRepairClass();
+                    $B3->setBudget_Id($_POST["Budget_Id"]);
+                    $result = $B3->getBudgetById($connection);
+                    $B3->displayBudgetRepair($result);
+                    echo $B3;
                     break;   
                 default:
                     break;                                      
