@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -106,6 +106,15 @@
     .button:hover {
         opacity: 0.8; /* Reduce opacity on hover for visual feedback */
     }
+    .bottom-left {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+}
 </style>
 </head>
 <body>
@@ -121,7 +130,7 @@
     
     <div id="main-content">
     	  <?php
-        require_once '../models/dbconfig.php';
+        require_once 'C:\xampp\htdocs\QualityControl\models\dbconfig.php';
         require_once '../class/ClientRequestsClass.php'; // Assuming ClientRequestsClass.php contains the class definition
         require_once '../class/NewRequestClass.php';
         
@@ -180,5 +189,8 @@
         }
         ?>
     </div>
+    <?php
+    echo '<a  class="bottom-left" href="dashboard.php" class="button">Back</a>';
+    ?>
 </body>
 </html>
