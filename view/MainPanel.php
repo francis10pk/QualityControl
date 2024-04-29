@@ -84,8 +84,8 @@ body {
             <div class="dashboard-features">  
                 <a href="NewOrderServiceForm.php?op=1">Order Service Panel </a><hr>
                 <a href="NewClientForm.php?op=2">Client Panel </a> <hr>
-                <a href="NewBudgetForm.php?op=3">Budget Panel</a><br/>
-		<a href=:"MachineManageForm.php?>Machine Panel </a> <br>
+                <a href="NewBudgetForm.php?op=3">Budget Panel</a><hr>
+				<a href="MachineManageForm.php?op=4">Machine Panel </a> <br/>
       		</div> 
   	</div>  	
 

@@ -168,12 +168,7 @@
         </div>
     </div>
     
-<!--     <div id="formContent" class="formContent"> -->
-        <?php
 
-        ?>
-    </div>
-    
     <div id="formContent" class="formContent">
         <?php
         try {

@@ -111,51 +111,57 @@ a {
  
 <form action="NewOrderServiceForm.php" method="post">
 <div class ="container">
-<div class = "column1">
-<hr>
-<div class="section">
-<a href="MainPanel.php">Go Main Panel</a>
-</div>
-<hr>
- 
-</div>
-    <div class = "column2">
-        <h1>Machine Maintenance Form</h1>
-            <table border='1'>	
-                <tr>
-                    <th>Machine code</th> 				
-                    <td><input type="text" name= "Machine code" id="Machine_code" /></td>
-                </tr>
-                <tr>
-                    <th>Model</th>				
-                    <td><input type="text" name= "Model"  id="Model" /></td>
-                </tr>
-                <tr>
-                    <th>MachineLine</th>		
-                    <td><input type="text" name= "MachineLine" id="MachineLine" /></td>
-                </tr>
-            </table>
-        
+    <div class = "column1">
+    <hr>
+    <div class="section">
+    <a href="MainPanel.php">Go Main Panel</a>
+    </div>
+    <hr>
+     
+    </div>
+        <div class = "column2">
+            <h1>Machine Maintenance Form</h1>
+                <table border='1'>	
+                    <tr>
+                        <th>Machine code</th> 				
+                        <td><input type="text" name= "Machine code" id="Machine_code" /></td>
+                    </tr>
+                    <tr>
+                        <th>Model</th>				
+                        <td><input type="text" name= "Model"  id="Model" /></td>
+                    </tr>
+                    <tr>
+                        <th>MachineLine</th>		
+                        <td><input type="text" name= "MachineLine" id="MachineLine" /></td>
+                    </tr>
+                </table>
+            
+            	
+            	<div class="button">
+            	    <button type="submit" name= "operation" value="Add">Add</button>
+            		<button type="submit" name= "operation" value="Update">Update</button>
+               		<button type="submit" name= "operation" value="Delete">Delete</button>
+               	</div>  
+               	
+               	<div class = "column3">    	
         	
-        	<div class="button">
-        	    <button type="submit" name= "operation" value="Add">Add</button>
-        		<button type="submit" name= "operation" value="Update">Update</button>
-           		<button type="submit" name= "operation" value="Delete">Delete</button>
-           	</div>  
-           	
-           	<div class = "column3">    	
-    	
-    	<div class="button-search">
-    	
-    		<button type="submit" name="operation" value="List">List Of Machines</button>
-    	</div>
-    
-    </div> 	
-    </form>
+        	<div class="button-search">
+        	
+        		<button type="submit" name="operation" value="List">List Of Machines</button>
+        	</div>
+        
+        </div> 	
+     </div>
+     </div>
+</form>
+
+	
+
+
 <?php
-require_once 'C:\xampp\htdocs\QualityControl\Model\dbconfig.php';
+require_once 'C:\xampp\htdocs\QualityControl\models\dbconfig.php';
 use \class\MachineClass;
-require 'C:\xampp\htdocs\QualityControl\cls\OrderServiceClass.php';
+require 'C:\xampp\htdocs\QualityControl\class\OrderServiceClass.php';
  
 
  

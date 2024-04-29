@@ -17,10 +17,18 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-image: url('/QualityControl/img/logo.jpg');
+            background-size: cover;
+            background-position: center;
         }
         .login-container h2 {
             text-align: center;
-            color: #333333;
+            color: white;
+            text-shadow: -1px -1px 0 #007bff,  
+                  1px -1px 0 #007bff,
+                  -1px 1px 0 #007bff,
+                  1px 1px 0 #007bff,
+                  0px 0px 5px #007bff;
         }
         .login-form {
             margin-top: 20px;
@@ -66,12 +74,12 @@
         <h2>Login</h2>
         <form class="login-form" action="#" method="post">
             <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                
+                <input type="text" id="username" name="username" required placeholder="Enter your username">>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
             </div>
             <div>
                 <button type="submit" class="login-btn">Login</button>
